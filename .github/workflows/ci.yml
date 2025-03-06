@@ -11,12 +11,30 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout código
+      - name: Checkout do código
         uses: actions/checkout@v4
 
       - name: Configurar ambiente
-        run: echo "Configuração do ambiente"
+        run: echo "Configuração do ambiente concluída"
+
+      - name: Instalar dependências
+        run: |
+          if [ -f "package.json" ]; then
+            npm install
+          elif [ -f "requirements.txt" ]; then
+            pip install -r requirements.txt
+          else
+            echo "Nenhum gerenciador de pacotes identificado. Pulando etapa..."
+          fi
 
       - name: Rodar testes
-        run: echo "Rodando testes"
+        run: |
+          if [ -f "package.json" ]; then
+            npm test
+          elif [ -f "pytest.ini" ]; then
+            pytest
+          else
+            echo "Nenhum teste identificado. Pulando etapa..."
+          fi
