@@ -1,0 +1,43 @@
+name: Deploy FastFood App
+
+on:
+  push:
+    branches:
+      - develop
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do Código
+        uses: actions/checkout@v3
+
+      - name: Configurar AWS CLI
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+
+      - name: Instalar AWS ECR Login
+        run: aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin <AWS_ECR_REPOSITORY>
+
+      - name: Construir e Taggear Imagem Docker
+        run: |
+          docker build -t fastfood-app .
+          docker tag fastfood-app:latest <AWS_ECR_REPOSITORY>/fastfood-app:latest
+
+      - name: Push para AWS ECR
+        run: docker push <AWS_ECR_REPOSITORY>/fastfood-app:latest
+
+      - name: Configurar Kubectl
+        run: aws eks update-kubeconfig --name pollos-hermanos --region us-east-1
+
+      - name: Atualizar Aplicação no Kubernetes
+        run: |
+          kubectl set image deployment/fastfood-app fastfood-app=<AWS_ECR_REPOSITORY>/fastfood-app:latest -n default
+          kubectl rollout status deployment/fastfood-app -n default
