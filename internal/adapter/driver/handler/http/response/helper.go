@@ -6,7 +6,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/go-playground/validator/v10"
-	"github.com/vitovidale/fastfood-appinternal/core/domain"
+	"github.com/vitovidale/fastfood-app/internal/core/domain"
 )
 
 type DefaultResponse struct {
