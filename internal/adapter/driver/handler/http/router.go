@@ -9,8 +9,8 @@ import (
 	sloggin "github.com/samber/slog-gin"
 	swaggerfiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
-	"github.com/vitovidale/TECH-CHALLENGE/docs"
-	"github.com/vitovidale/TECH-CHALLENGE/internal/adapter/driven/config"
+	"github.com/vitovidale/fastfood-app/docs"
+	"github.com/vitovidale/fastfood-app/internal/adapter/driven/config"
 )
 
 // Router is a struct that wraps all the routes for the app.
