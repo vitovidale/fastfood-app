@@ -5,7 +5,7 @@ import (
 
 	"github.com/google/uuid"
 	"github.com/vitovidale/fastfood-app/internal/core/domain"
-	"github.com/vitovidale/fastfood-app//internal/core/port"
+	"github.com/vitovidale/fastfood-app/internal/core/port"
 )
 
 type ProductService struct {

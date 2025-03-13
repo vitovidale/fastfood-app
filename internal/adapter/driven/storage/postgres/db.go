@@ -5,7 +5,7 @@ import (
 	"fmt"
 
 	"github.com/vitovidale/fastfood-app/internal/adapter/driven/config"
-	"github.com/vitovidale/fastfood-app/TECH-CHALLENGE/internal/core/domain"
+	"github.com/vitovidale/fastfood-app/internal/core/domain"
 
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
