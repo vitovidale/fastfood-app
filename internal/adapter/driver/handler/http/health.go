@@ -4,8 +4,8 @@ import (
 	"sync/atomic"
 
 	"github.com/gin-gonic/gin"
-	"github.com/vitovidale/TECH-CHALLENGE/internal/adapter/driver/handler/http/response"
-	"github.com/vitovidale/TECH-CHALLENGE/internal/core/domain"
+	"github.com/vitovidale/fastfood-app/internal/adapter/driver/handler/http/response"
+	"github.com/vitovidale/fastfood-app/internal/core/domain"
 )
 
 type HealthHandler struct {
