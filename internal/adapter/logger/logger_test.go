@@ -3,8 +3,8 @@ package logger_test
 import (
 	"testing"
 
-	"github.com/vitovidale/TECH-CHALLENGE/internal/adapter/driven/config"
-	"github.com/vitovidale/TECH-CHALLENGE/internal/adapter/logger"
+	"github.com/vitovidale/fastfood-app/internal/adapter/driven/config"
+	"github.com/vitovidale/fastfood-app/internal/adapter/logger"
 )
 
 func TestSetLogger(t *testing.T) {

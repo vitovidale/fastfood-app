@@ -3,7 +3,7 @@ package response
 import (
 	"time"
 
-	"github.com/vitovidale/TECH-CHALLENGE/internal/core/domain"
+	"github.com/vitovidale/fastfood-app/internal/core/domain"
 )
 
 type CategoryResponse struct {
