@@ -23,6 +23,8 @@ require (
 	gorm.io/gorm v1.25.12
 )
 
+replace github.com/vitovidale/TECH-CHALLENGE/docs => ./docs
+
 require (
 	go.opentelemetry.io/otel v1.28.0 // indirect
 	go.opentelemetry.io/otel/trace v1.28.0 // indirect
