@@ -3,7 +3,7 @@ package port
 import (
 	"context"
 
-	"github.com/vitovidale/TECH-CHALLENGE/internal/core/domain"
+	"github.com/vitovidale/fastfood-app/internal/core/domain"
 )
 
 type OrderRepositoryReader interface {

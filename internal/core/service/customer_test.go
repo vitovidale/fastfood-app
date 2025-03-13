@@ -6,8 +6,8 @@ import (
 	"time"
 
 	"github.com/brianvoe/gofakeit/v7"
-	"github.com/vitovidale/TECH-CHALLENGE/internal/core/domain"
-	mock_port "github.com/vitovidale/TECH-CHALLENGE/internal/core/port/mock"
+	"github.com/vitovidale/fastfood-app/internal/core/domain"
+	mock_port "github.com/vitovidale/fastfood-app/internal/core/port/mock"
 	"go.uber.org/mock/gomock"
 )
 

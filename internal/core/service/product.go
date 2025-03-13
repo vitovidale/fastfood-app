@@ -4,8 +4,8 @@ import (
 	"context"
 
 	"github.com/google/uuid"
-	"github.com/vitovidale/TECH-CHALLENGE/internal/core/domain"
-	"github.com/vitovidale/TECH-CHALLENGE/internal/core/port"
+	"github.com/vitovidale/fastfood-app/internal/core/domain"
+	"github.com/vitovidale/fastfood-app//internal/core/port"
 )
 
 type ProductService struct {

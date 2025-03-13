@@ -3,8 +3,8 @@ package repository
 import (
 	"context"
 
-	"github.com/vitovidale/TECH-CHALLENGE/internal/adapter/driven/storage/postgres"
-	"github.com/vitovidale/TECH-CHALLENGE/internal/core/domain"
+	"github.com/vitovidale/fastfood-app/internal/adapter/driven/storage/postgres"
+	"github.com/vitovidale/fastfood-app/internal/core/domain"
 )
 
 type CustomerRepository struct {

@@ -3,7 +3,7 @@ package port
 import (
 	"context"
 
-	"github.com/vitovidale/TECH-CHALLENGE/internal/core/domain"
+	"github.com/vitovidale/fastfood-app/internal/core/domain"
 )
 
 // CategoryRepositoryReader is an interface that wraps all the reading operations for a category.

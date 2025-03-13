@@ -4,8 +4,8 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/vitovidale/TECH-CHALLENGE/internal/adapter/driven/config"
-	"github.com/vitovidale/TECH-CHALLENGE/internal/core/domain"
+	"github.com/vitovidale/fastfood-app/internal/adapter/driven/config"
+	"github.com/vitovidale/fastfood-app//TECH-CHALLENGE/internal/core/domain"
 
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
