@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fastfood-app
+  namespace: default
+  labels:
+    app: fastfood-app
+spec:
+  replicas: 2  # Adjust the number of replicas as needed
+  selector:
+    matchLabels:
+      app: fastfood-app
+  template:
+    metadata:
+      labels:
+        app: fastfood-app
+    spec:
+      containers:
+      - name: fastfood-app
+        image: 209479263702.dkr.ecr.us-east-1.amazonaws.com/fastfood-app:latest
+        ports:
+        - containerPort: 8080  # Adjust if your app listens on a different port
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: fastfood-app-service
+  namespace: default
+spec:
+  type: LoadBalancer
+  selector:
+    app: fastfood-app
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8080
