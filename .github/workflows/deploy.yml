@@ -13,32 +13,36 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout do Código
+      - name: Checkout Code
         uses: actions/checkout@v3
 
-      - name: Configurar AWS CLI
+      - name: Configure AWS CLI
         uses: aws-actions/configure-aws-credentials@v1
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
 
-      - name: Login no AWS ECR
+      - name: Login to AWS ECR
         run: |
           aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 209479263702.dkr.ecr.us-east-1.amazonaws.com
 
-      - name: Construir e Taggear Imagem Docker
+      - name: Build and Tag Docker Image
         run: |
           docker build -t fastfood-app .
           docker tag fastfood-app:latest 209479263702.dkr.ecr.us-east-1.amazonaws.com/fastfood-app:latest
 
-      - name: Push para AWS ECR
+      - name: Push to AWS ECR
         run: docker push 209479263702.dkr.ecr.us-east-1.amazonaws.com/fastfood-app:latest
 
-      - name: Configurar Kubectl
+      - name: Update kubeconfig
         run: aws eks update-kubeconfig --name pollos-hermanos --region us-east-1
 
-      - name: Atualizar Aplicação no Kubernetes
+      - name: Deploy FastFood App
         run: |
+          # If this is the first deployment and you need to create the deployment, you can apply a manifest:
+          # kubectl apply -f k8s/fastfood-app.yaml
+          #
+          # Otherwise, if the deployment already exists, update the image:
           kubectl set image deployment/fastfood-app fastfood-app=209479263702.dkr.ecr.us-east-1.amazonaws.com/fastfood-app:latest -n default
           kubectl rollout status deployment/fastfood-app -n default
