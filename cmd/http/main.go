@@ -6,12 +6,12 @@ import (
 	"log/slog"
 	"os"
 
-	"github.com/vitovidale/TECH-CHALLENGE/internal/adapter/driven/config"
-	"github.com/vitovidale/TECH-CHALLENGE/internal/adapter/driven/storage/postgres"
-	"github.com/vitovidale/TECH-CHALLENGE/internal/adapter/driven/storage/postgres/repository"
-	"github.com/vitovidale/TECH-CHALLENGE/internal/adapter/driver/handler/http"
-	"github.com/vitovidale/TECH-CHALLENGE/internal/adapter/logger"
-	"github.com/vitovidale/TECH-CHALLENGE/internal/core/service"
+	"github.com/vitovidale/fastfood-app/internal/adapter/driven/config"
+	"github.com/vitovidale/fastfood-app/internal/adapter/driven/storage/postgres"
+	"github.com/vitovidale/fastfood-app/internal/adapter/driven/storage/postgres/repository"
+	"github.com/vitovidale/fastfood-app/internal/adapter/driver/handler/http"
+	"github.com/vitovidale/fastfood-app/internal/adapter/logger"
+	"github.com/vitovidale/fastfood-app/internal/core/service"
 )
 
 //	@title			Tech Challenge API
@@ -19,7 +19,7 @@ import (
 //	@description	This is an API for Tech Challenge from FIAP.
 //
 //	@license.name	MIT
-//	@license.url	https://github.com/vitovidale/TECH-CHALLENGE/blob/main/LICENSE
+//	@license.url	https://github.com/vitovidale/fastfood-app/blob/main/LICENSE
 //
 //	@host			127.0.0.1:8080
 //	@BasePath		/v1
