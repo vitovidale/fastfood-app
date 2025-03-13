@@ -5,7 +5,7 @@ import (
 	"os"
 
 	slogmulti "github.com/samber/slog-multi"
-	"github.com/vitovidale/TECH-CHALLENGE/internal/adapter/driven/config"
+	"github.com/vitovidale/fastfood-app/internal/adapter/driven/config"
 	"gopkg.in/natefinch/lumberjack.v2"
 )
 
