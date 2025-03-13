@@ -7,6 +7,12 @@ on:
   pull_request:
     branches:
       - main
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Branch to deploy'
+        required: true
+        default: 'develop'
 
 jobs:
   build-and-deploy:
@@ -15,6 +21,9 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
+        with:
+          # Use the branch provided by workflow_dispatch, if available; otherwise, use the branch that triggered the event.
+          ref: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.branch || github.ref }}
 
       - name: Configure AWS CLI
         uses: aws-actions/configure-aws-credentials@v1
@@ -40,9 +49,6 @@ jobs:
 
       - name: Deploy FastFood App
         run: |
-          # If this is the first deployment and you need to create the deployment, you can apply a manifest:
-          # kubectl apply -f k8s/fastfood-app.yaml
-          #
-          # Otherwise, if the deployment already exists, update the image:
+          # Update the image in your existing deployment
           kubectl set image deployment/fastfood-app fastfood-app=209479263702.dkr.ecr.us-east-1.amazonaws.com/fastfood-app:latest -n default
           kubectl rollout status deployment/fastfood-app -n default
