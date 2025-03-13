@@ -4,10 +4,10 @@ import (
 	"strconv"
 
 	"github.com/gin-gonic/gin"
-	"github.com/vitovidale/TECH-CHALLENGE/internal/adapter/driver/handler/http/request"
-	"github.com/vitovidale/TECH-CHALLENGE/internal/adapter/driver/handler/http/response"
-	"github.com/vitovidale/TECH-CHALLENGE/internal/core/domain"
-	"github.com/vitovidale/TECH-CHALLENGE/internal/core/port"
+	"github.com/vitovidale/fastfood-app/internal/adapter/driver/handler/http/request"
+	"github.com/vitovidale/fastfood-app/internal/adapter/driver/handler/http/response"
+	"github.com/vitovidale/fastfood-app/internal/core/domain"
+	"github.com/vitovidale/fastfood-app/internal/core/port"
 )
 
 type CustomerHandler struct {
