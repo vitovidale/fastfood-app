@@ -1,4 +1,4 @@
-module github.com/vitovidale/TECH-CHALLENGE
+module github.com/vitovidale/fastfood-app
 
 go 1.22.2
 
