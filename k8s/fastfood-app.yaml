@@ -1,3 +1,4 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -32,7 +33,7 @@ spec:
           value: "8080"
         - name: HTTP_ALLOWED_ORIGINS
           value: "http://127.0.0.1:3000,http://127.0.0.1:5173"
-        # Database connection details for RDS
+        # Database connection details (RDS)
         - name: DB_CONNECTION
           value: "postgres"
         - name: DB_HOST
@@ -68,17 +69,3 @@ spec:
             memory: "1024Mi"
       imagePullSecrets:
       - name: aws-ecr-registry
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: fastfood-app-service
-  namespace: default
-spec:
-  type: LoadBalancer
-  selector:
-    app: fastfood-app
-  ports:
-  - protocol: TCP
-    port: 80
-    targetPort: 8080
