@@ -1,36 +1,69 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: fastfood-app
-  namespace: default
+  name: food-app-deployment
   labels:
-    app: fastfood-app
+    app: food-app-deployment
 spec:
-  replicas: 2  # Adjust the number of replicas as needed
+  replicas: 3
   selector:
     matchLabels:
-      app: fastfood-app
+      app: food-app-deployment
   template:
     metadata:
       labels:
-        app: fastfood-app
+        app: food-app-deployment
     spec:
       containers:
-      - name: fastfood-app
-        image: 209479263702.dkr.ecr.us-east-1.amazonaws.com/fastfood-app:latest
+      - name: food-pod
+        image: 209479263702.dkr.ecr.us-east-1.amazonaws.com/tech-challenge-grupo-53/food-app:latest
+        imagePullPolicy: Always
         ports:
-        - containerPort: 8080  # Adjust if your app listens on a different port
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: fastfood-app-service
-  namespace: default
-spec:
-  type: LoadBalancer
-  selector:
-    app: fastfood-app
-  ports:
-  - protocol: TCP
-    port: 80
-    targetPort: 8080
+        - containerPort: 8080
+        env:
+        - name: APP_NAME
+          value: grupo-53-food
+        - name: APP_ENV
+          value: "development"
+        - name: HTTP_URL
+          value: "0.0.0.0"
+        - name: HTTP_PORT
+          value: "8080"
+        - name: HTTP_ALLOWED_ORIGINS
+          value: "http://127.0.0.1:3000,http://127.0.0.1:5173"
+        # Updated DB connection details for RDS:
+        - name: DB_CONNECTION
+          value: "postgres"
+        - name: DB_HOST
+          value: "fastfood-db.ca1aao66e9m3.us-east-1.rds.amazonaws.com"
+        - name: DB_PORT
+          value: "5432"
+        - name: DB_NAME
+          value: "fastfooddb"
+        - name: DB_USER
+          value: "postgres"
+        - name: DB_PASSWORD
+          value: "postgres"
+        livenessProbe:
+          httpGet:
+            path: /v1/health/liveness
+            port: 8080
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          failureThreshold: 3
+        readinessProbe:
+          httpGet:
+            path: /v1/health/liveness
+            port: 8080
+          initialDelaySeconds: 5
+          periodSeconds: 5
+          failureThreshold: 3
+        resources:
+          requests:
+            cpu: 200m
+            memory: 256Mi
+          limits:
+            cpu: 700m
+            memory: 1024Mi
+      imagePullSecrets:
+      - name: aws-ecr-registry
