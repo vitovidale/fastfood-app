@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: fastfood-app
-        image: 209479263702.dkr.ecr.us-east-1.amazonaws.com/fastfood-app:latest
+        image: 209479263702.dkr.ecr.us-east-1.amazonaws.com/tech-challenge-grupo-53/food-app:latest
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
@@ -33,7 +33,7 @@ spec:
           value: "8080"
         - name: HTTP_ALLOWED_ORIGINS
           value: "http://127.0.0.1:3000,http://127.0.0.1:5173"
-        # Database connection details (RDS)
+        # Database connection details for RDS
         - name: DB_CONNECTION
           value: "postgres"
         - name: DB_HOST
@@ -69,3 +69,17 @@ spec:
             memory: "1024Mi"
       imagePullSecrets:
       - name: aws-ecr-registry
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: fastfood-app-service
+  namespace: default
+spec:
+  type: LoadBalancer
+  selector:
+    app: fastfood-app
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8080
