@@ -31,7 +31,7 @@ func ResetOrderTrackingNumberSequence(db *gorm.DB) error {
 }
 
 func New(ctx context.Context, config *config.DB) (*DB, error) {
-	dsn := fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=disable",
+	dsn := fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=require",
 		config.Host,
 		config.Port,
 		config.User,
