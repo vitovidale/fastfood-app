@@ -47,20 +47,6 @@ spec:
           value: "postgres"
         - name: DB_PASSWORD
           value: "postgres"
-        livenessProbe:
-          httpGet:
-            path: /v1/health/liveness
-            port: 8080
-          initialDelaySeconds: 10
-          periodSeconds: 10
-          failureThreshold: 3
-        readinessProbe:
-          httpGet:
-            path: /v1/health/liveness
-            port: 8080
-          initialDelaySeconds: 5
-          periodSeconds: 5
-          failureThreshold: 3
         resources:
           requests:
             cpu: "200m"
