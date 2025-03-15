@@ -36,7 +36,7 @@ spec:
           value: "http://127.0.0.1:3000,http://127.0.0.1:5173"
         # Database connection details for RDS
         - name: DB_CONNECTION
-          value: "postgres sslmode=require"
+          value: "postgres"
         - name: DB_HOST
           value: "fastfood-db.ca1aao66e9m3.us-east-1.rds.amazonaws.com"
         - name: DB_PORT
