@@ -15,14 +15,14 @@ on:
         default: 'develop'
 
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
         with:
-          # Use the branch provided by workflow_dispatch, if available; otherwise, use the branch that triggered the event.
+          # Uses the branch provided via workflow_dispatch (or the branch that triggered the event)
           ref: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.branch || github.ref }}
 
       - name: Configure AWS CLI
@@ -32,29 +32,11 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
 
-      - name: Login to AWS ECR
-        run: |
-          aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 209479263702.dkr.ecr.us-east-1.amazonaws.com
-
-      - name: Build and Tag Docker Image
-        run: |
-          docker build -t fastfood-app .
-          docker tag fastfood-app:latest 209479263702.dkr.ecr.us-east-1.amazonaws.com/fastfood-app:latest
-
-      - name: Ensure ECR repository exists
-        run: |
-          aws ecr describe-repositories --repository-names fastfood-app --region us-east-1 || aws ecr create-repository --repository-name fastfood-app --region us-east-1
-
-      - name: Push to AWS ECR
-        run: docker push 209479263702.dkr.ecr.us-east-1.amazonaws.com/fastfood-app:latest
-
       - name: Update kubeconfig
         run: aws eks update-kubeconfig --name pollos-hermanos --region us-east-1
 
-      - name: Apply Kubernetes Deployment
+      - name: Apply Kubernetes Manifest
         run: kubectl apply -f k8s/fastfood-app.yaml
 
-      - name: Deploy FastFood App
-        run: |
-          kubectl set image deployment/fastfood-app fastfood-app=209479263702.dkr.ecr.us-east-1.amazonaws.com/fastfood-app:latest -n default
-          kubectl rollout status deployment/fastfood-app -n default
+      - name: Check Rollout Status
+        run: kubectl rollout status deployment/fastfood-app -n default
