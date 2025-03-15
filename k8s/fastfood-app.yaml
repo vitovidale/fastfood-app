@@ -27,7 +27,7 @@ spec:
         - name: APP_NAME
           value: "grupo-53-food"
         - name: APP_ENV
-          value: "development"
+          value: "production"
         - name: HTTP_URL
           value: "0.0.0.0"
         - name: HTTP_PORT
