@@ -1,0 +1,29 @@
+name: Delete EKS Cluster
+
+on:
+  workflow_dispatch:  # Manual trigger from GitHub Actions UI
+
+jobs:
+  delete-eks:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Configure AWS CLI
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+
+      - name: Delete EKS Node Group
+        run: |
+          echo "Deleting node group 'fastfood-nodes' from cluster 'pollos-hermanos'..."
+          aws eks delete-nodegroup --cluster-name pollos-hermanos --nodegroup-name fastfood-nodes
+          echo "Waiting 5 minutes for node group deletion to complete..."
+          sleep 300
+
+      - name: Delete EKS Cluster
+        run: |
+          echo "Deleting EKS cluster 'pollos-hermanos'..."
+          aws eks delete-cluster --name pollos-hermanos
+          echo "Deletion initiated. Please check the AWS Console for progress."
