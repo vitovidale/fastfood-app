@@ -1,12 +1,6 @@
 name: Deploy FastFood App
 
 on:
-  push:
-    branches:
-      - develop
-  pull_request:
-    branches:
-      - main
   workflow_dispatch:
     inputs:
       branch:
