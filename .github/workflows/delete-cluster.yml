@@ -19,8 +19,8 @@ jobs:
         run: |
           echo "Deleting node group 'fastfood-nodes' from cluster 'pollos-hermanos'..."
           aws eks delete-nodegroup --cluster-name pollos-hermanos --nodegroup-name fastfood-nodes
-          echo "Waiting 5 minutes for node group deletion to complete..."
-          sleep 300
+          echo "Waiting for node group deletion to complete..."
+          sleep 500
 
       - name: Delete EKS Cluster
         run: |
