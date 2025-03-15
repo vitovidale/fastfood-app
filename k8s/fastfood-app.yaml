@@ -11,6 +11,7 @@ spec:
   selector:
     matchLabels:
       app: fastfood-app
+  progressDeadlineSeconds: 600  # Increases rollout deadline if necessary
   template:
     metadata:
       labels:
@@ -24,7 +25,7 @@ spec:
         - containerPort: 8080
         env:
         - name: APP_NAME
-          value: grupo-53-food
+          value: "grupo-53-food"
         - name: APP_ENV
           value: "development"
         - name: HTTP_URL
