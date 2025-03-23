@@ -8,11 +8,11 @@ spec:
   replicas: 3
   selector:
     matchLabels:
-      app: food-app-deployment
+      app: fastfood-app
   template:
     metadata:
       labels:
-        app: food-app-deployment
+        app: fastfood-app
     spec:
       containers:
         - name: food-pod
