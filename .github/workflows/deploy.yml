@@ -45,8 +45,11 @@ jobs:
       - name: Update kubeconfig
         run: aws eks update-kubeconfig --name pollos-hermanos --region us-east-1
 
+      - name: Deploy Kubernetes Manifests
+        run: kubectl apply -f fastfood-app/k8s/
+
       - name: Deploy FastFood App
         run: |
-          # Update the image in your existing deployment
+          # Update the image in the existing deployment
           kubectl set image deployment/fastfood-app fastfood-app=209479263702.dkr.ecr.us-east-1.amazonaws.com/fastfood-app:latest -n default
           kubectl rollout status deployment/fastfood-app -n default
