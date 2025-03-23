@@ -4,13 +4,13 @@
 
 ---
 
-## 📄 Descrição do Projeto
+## Descrição do Projeto
 
 O **fastfood-app** é a interface de autoatendimento que permite aos clientes montar pedidos (lanche, acompanhamento, bebida, sobremesa), visualizar o status e confirmar pagamentos. Faz parte do sistema FastFood‑App integrado com autenticação (Auth0), banco de dados (RDS) e backend em Kubernetes (EKS).
 
 ---
 
-## ⚠️ Pré‑requisitos
+## Pré‑requisitos
 
 - Docker  
 - kubectl configurado para o cluster EKS  
@@ -30,12 +30,3 @@ O deploy é feito automaticamente via GitHub Actions (workflow_dispatch).
 3. Clique em **Run workflow**
 
 ---
-
-## 📦 Kubernetes
-
-- Deployment: `fastfood-app`  
-- Namespace: `default`  
-
-Para rollback:  
-```bash
-kubectl rollout undo deployment/fastfood-app -n default
