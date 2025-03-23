@@ -19,7 +19,7 @@ O **fastfood-app** é a interface de autoatendimento que permite aos clientes mo
 
 ---
 
-## 🚀 Deploy
+## Deploy
 
 O deploy é feito automaticamente via GitHub Actions (workflow_dispatch).
 
