@@ -46,7 +46,7 @@ jobs:
         run: aws eks update-kubeconfig --name pollos-hermanos --region us-east-1
 
       - name: Deploy Kubernetes Manifests
-        run: kubectl apply -f fastfood-app/k8s/
+        run: kubectl apply -f k8s/app/
 
       - name: Deploy FastFood App
         run: |
